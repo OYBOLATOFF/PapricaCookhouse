@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                   https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+    <changeSet id="create-menuitem-table" author="rboybolatov">
+        <sqlFile path="db/changelog/24-07/01-create-menuitem-table.sql"/>
+    </changeSet>
+    <changeSet id="create-menuitemphoto-table" author="rboybolatov">
+        <sqlFile path="db/changelog/24-07/02-create-menuitemphoto-table.sql"/>
+    </changeSet>
+</databaseChangeLog>
