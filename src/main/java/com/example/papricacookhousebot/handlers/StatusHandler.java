@@ -19,10 +19,10 @@ public abstract class StatusHandler {
     public void process(Update update) {
         SendMessage newMessage = new SendMessage(
                 update.getMessage().getChatId()+"",
-                "Сработал стандартный обработчик"
+                "Сработал обработчик "+(this.getClass().getSimpleName())
         );
 
         telegramBot.execute(newMessage);
-    };
+    }
 
 }
