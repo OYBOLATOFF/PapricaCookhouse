@@ -13,7 +13,13 @@
     <changeSet id="create-menucategory-table" author="rboybolatov">
         <sqlFile path="db/changelog/24-07/03-create-menucategory-table.sql"/>
     </changeSet>
-    <changeSet id="add-foreign-key" author="rboybolatov">
+    <changeSet id="add-foreign-menucategory-key" author="rboybolatov">
         <sqlFile path="db/changelog/24-07/04-add-foreign-key-menucategory.sql"/>
+    </changeSet>
+    <changeSet id="create-status-table" author="rboybolatov">
+        <sqlFile path="db/changelog/24-07/05-create-status-table.sql"/>
+    </changeSet>
+    <changeSet id="create-chat-state-table" author="rboybolatov">
+        <sqlFile path="db/changelog/24-07/06-create-chat-state-table.sql"/>
     </changeSet>
 </databaseChangeLog>

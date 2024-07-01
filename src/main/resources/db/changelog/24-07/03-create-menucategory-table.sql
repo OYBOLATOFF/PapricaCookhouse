@@ -1,4 +1,4 @@
-create table MenuCategory
+create table menu_category
 (
     id            int auto_increment
         primary key,
