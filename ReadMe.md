@@ -8,7 +8,8 @@
 
 ### Схема базы данных (актуальна на 01.07.2024):
 
-<img width="199" alt="image" src="https://github.com/OYBOLATOFF/PapricaCookhouse/assets/90787187/a898eb31-afde-41f3-8cbb-f1295721cf0e">
+<img width="258" alt="image" src="https://github.com/OYBOLATOFF/PapricaCookhouse/assets/90787187/f264570f-86e4-43cb-a2f4-5e4722ecc0df">
+
 
 ### Машина состояний бота для осмысленных диалогов (Finite State Machine. Актуальна на 01.07.2024)
 
