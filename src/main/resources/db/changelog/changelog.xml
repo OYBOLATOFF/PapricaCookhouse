@@ -10,4 +10,10 @@
     <changeSet id="create-menuitemphoto-table" author="rboybolatov">
         <sqlFile path="db/changelog/24-07/02-create-menuitemphoto-table.sql"/>
     </changeSet>
+    <changeSet id="create-menucategory-table" author="rboybolatov">
+        <sqlFile path="db/changelog/24-07/03-create-menucategory-table.sql"/>
+    </changeSet>
+    <changeSet id="add-foreign-key" author="rboybolatov">
+        <sqlFile path="db/changelog/24-07/04-add-foreign-key-menucategory.sql"/>
+    </changeSet>
 </databaseChangeLog>
