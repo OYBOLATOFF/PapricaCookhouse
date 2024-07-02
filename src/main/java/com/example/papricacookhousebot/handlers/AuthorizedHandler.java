@@ -7,7 +7,6 @@ import org.telegram.telegrambots.meta.api.objects.Update;
 @Component
 public class AuthorizedHandler extends StatusHandler {
     @Override
-    @SneakyThrows
     public void process(Update update) {
         super.process(update);
     }

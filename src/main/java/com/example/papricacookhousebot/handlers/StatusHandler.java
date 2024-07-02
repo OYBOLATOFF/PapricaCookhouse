@@ -1,6 +1,11 @@
 package com.example.papricacookhousebot.handlers;
 
+import com.example.papricacookhousebot.enums.Status;
+import com.example.papricacookhousebot.objects.ChatState;
+import com.example.papricacookhousebot.repositories.ChatStateRepository;
+import com.example.papricacookhousebot.repositories.StatusRepository;
 import com.example.papricacookhousebot.service.TelegramBot;
+import com.example.papricacookhousebot.util.TransitionHelper;
 import lombok.SneakyThrows;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
@@ -15,14 +20,12 @@ public abstract class StatusHandler {
     @Autowired
     protected TelegramBot telegramBot;
 
+    @Autowired
+    protected TransitionHelper transitionHelper;
+
     @SneakyThrows
     public void process(Update update) {
-        SendMessage newMessage = new SendMessage(
-                update.getMessage().getChatId()+"",
-                "Сработал обработчик "+(this.getClass().getSimpleName())
-        );
-
-        telegramBot.execute(newMessage);
+        telegramBot.sendMessage(update, "Сработал обработчик "+(this.getClass().getSimpleName()));
     }
 
 }

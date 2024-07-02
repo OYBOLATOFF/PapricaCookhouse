@@ -8,7 +8,6 @@ import org.telegram.telegrambots.meta.api.objects.Update;
 public class WatchingMenuHandler extends StatusHandler {
 
     @Override
-    @SneakyThrows
     public void process(Update update) {
         super.process(update);
     }
