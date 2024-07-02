@@ -26,7 +26,6 @@ public abstract class StatusHandler {
     @SneakyThrows
     public void process(Update update) {
         telegramBot.sendMessage(update, "Сработал обработчик "+(this.getClass().getSimpleName()));
-        Thread.sleep(1000*60);
     }
 
 }
