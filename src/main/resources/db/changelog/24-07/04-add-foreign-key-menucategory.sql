@@ -1,5 +1,5 @@
-ALTER TABLE MenuItem
+ALTER TABLE menu_item
 ADD category_id INT NOT NULL;
 
-ALTER TABLE MenuItem
-ADD FOREIGN KEY (category_id) REFERENCES MenuCategory(id);
+ALTER TABLE menu_item
+ADD FOREIGN KEY (category_id) REFERENCES menu_category(id);

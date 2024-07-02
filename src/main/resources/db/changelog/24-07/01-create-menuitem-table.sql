@@ -1,4 +1,4 @@
-create table MenuItem
+create table menu_item
 (
     id          int auto_increment
         primary key,

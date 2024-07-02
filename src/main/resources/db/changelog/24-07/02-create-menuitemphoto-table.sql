@@ -1,4 +1,4 @@
-create table MenuItemPhoto
+create table menu_item_photo
 (
     id      int auto_increment
         primary key,
@@ -7,9 +7,9 @@ create table MenuItemPhoto
     constraint id_UNIQUE
         unique (id),
     constraint item_id
-        foreign key (item_id) references MenuItem (id)
+        foreign key (item_id) references menu_item (id)
 );
 
 create index item_id_idx
-    on MenuItemPhoto (item_id);
+    on menu_item_photo (item_id);
 

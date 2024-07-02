@@ -10,7 +10,7 @@
     </parent>
     <groupId>com.example</groupId>
     <artifactId>PapricaCookhouseBot</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>1.0.1</version>
     <name>PapricaCookhouseBot</name>
     <description>Paprica Telegram Bot For Operating Database</description>
     <url/>
