@@ -5,6 +5,7 @@ import com.example.papricacookhousebot.handlers.DefaultHandler;
 import com.example.papricacookhousebot.handlers.StatusHandler;
 import com.example.papricacookhousebot.repositories.StatusRepository;
 import com.example.papricacookhousebot.service.ChatStateService;
+import com.example.papricacookhousebot.util.TransitionHelper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,9 +28,6 @@ public class StateMachine {
     private Logger logger = LoggerFactory.getLogger(StateMachine.class);
 
     @Autowired
-    private ChatStateService chatStateService;
-
-    @Autowired
     private StatusRepository statusRepository;
 
     @Autowired
@@ -38,21 +36,17 @@ public class StateMachine {
     @Autowired
     private DefaultHandler defaultHandler;
 
+    @Autowired
+    private TransitionHelper transitionHelper;
+
     @PostConstruct
     private void init() {
         prepareHandlersMap();
-        logger.info("Маппинг хендлеров прошел успешно: {}", handlers);
     }
 
     public void process(Update update) {
-        Status status = getStatus(update);
+        Status status = transitionHelper.getChatStatus(update);
         handlers.getOrDefault(status, defaultHandler).process(update);
-    }
-
-    public Status getStatus(Update update) {
-        Long chatId = update.getMessage().getChatId();
-        chatStateService.registerIfChatNotExists(chatId);
-        return chatStateService.getStatus(chatId);
     }
 
     private void prepareHandlersMap() {
@@ -74,6 +68,8 @@ public class StateMachine {
                 logger.warn("Не удалось подтянуть обработчик {} для статуса {}", handlerClassName, statusName);
             }
         });
+
+        logger.info("Маппинг обработчиков прошел успешно: {}", handlers);
     }
 
 }

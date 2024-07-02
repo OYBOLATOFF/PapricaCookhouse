@@ -22,4 +22,7 @@
     <changeSet id="create-chat-state-table" author="rboybolatov">
         <sqlFile path="db/changelog/24-07/06-create-chat-state-table.sql"/>
     </changeSet>
+    <changeSet id="create-transition-rule-table" author="rboybolatov">
+        <sqlFile path="db/changelog/24-07/07-create-transition-rule-table.sql"/>
+    </changeSet>
 </databaseChangeLog>

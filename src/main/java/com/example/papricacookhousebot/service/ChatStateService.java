@@ -14,18 +14,21 @@ public class ChatStateService {
     private Logger logger = LoggerFactory.getLogger(ChatStateService.class);
 
     @Autowired
-    private ChatStateRepository stateRepository;
+    private ChatStateRepository chatStateRepository;
 
     public void registerIfChatNotExists(Long chatId) {
-        if (stateRepository.findStateByChatId(chatId) == null) {
-            stateRepository.save(new ChatState(chatId, Status.NOT_AUTHORIZED));
+        if (chatStateRepository.findStateByChatId(chatId) == null) {
+            chatStateRepository.save(new ChatState(chatId, Status.NOT_AUTHORIZED));
             logger.info("Зарегистрирован чат №{} в БД", chatId);
         }
     }
 
     public Status getStatus(Long chatId) {
-        ChatState state = stateRepository.findStateByChatId(chatId);
+        ChatState state = chatStateRepository.findStateByChatId(chatId);
         return state.getStatus();
     }
 
+    public void setStatus(Long chatId, Status newStatus) {
+        chatStateRepository.save(new ChatState(chatId, newStatus));
+    }
 }
