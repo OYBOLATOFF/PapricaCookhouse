@@ -16,4 +16,7 @@ public class BotConfiguration {
     @Value("${bot.api.key}")
     private String botToken;
 
+    @Value("${bot.secret-password}")
+    private String secretPassword;
+
 }

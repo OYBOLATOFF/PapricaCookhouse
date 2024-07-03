@@ -4,28 +4,23 @@ import com.example.papricacookhousebot.enums.Status;
 import com.example.papricacookhousebot.handlers.DefaultHandler;
 import com.example.papricacookhousebot.handlers.StatusHandler;
 import com.example.papricacookhousebot.repositories.StatusRepository;
-import com.example.papricacookhousebot.service.ChatStateService;
 import com.example.papricacookhousebot.util.TransitionHelper;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.meta.api.objects.Update;
 
 import javax.annotation.PostConstruct;
-import java.awt.event.TextEvent;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 @Component
+@Slf4j
 public class StateMachine {
 
     private Map<Status, StatusHandler> handlers = new HashMap<>();
-
-    private Logger logger = LoggerFactory.getLogger(StateMachine.class);
 
     @Autowired
     private StatusRepository statusRepository;
@@ -56,20 +51,20 @@ public class StateMachine {
             String handlerClassName = status.get(1);
 
             if (handlerClassName == null) {
-                logger.warn("Для статуса {} не задан обработчик в базе данных", statusName);
+                log.warn("Для статуса {} не задан обработчик в базе данных", statusName);
                 return;
             }
             try {
                 Class<?> handlerClass = Class.forName("com.example.papricacookhousebot.handlers."+handlerClassName);
                 StatusHandler statusHandler = (StatusHandler) applicationContext.getBean(handlerClass);
                 handlers.put(Status.valueOf(statusName), statusHandler);
-                logger.info("Зарегистрирован обработчик {} для статуса {}", handlerClassName, statusName);
+                log.info("Зарегистрирован обработчик {} для статуса {}", handlerClassName, statusName);
             } catch (ClassNotFoundException e) {
-                logger.warn("Не удалось подтянуть обработчик {} для статуса {}", handlerClassName, statusName);
+                log.warn("Не удалось подтянуть обработчик {} для статуса {}", handlerClassName, statusName);
             }
         });
 
-        logger.info("Маппинг обработчиков прошел успешно: {}", handlers);
+        log.info("Маппинг обработчиков прошел успешно: {}", handlers);
     }
 
 }
