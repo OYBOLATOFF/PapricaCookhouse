@@ -1,5 +1,6 @@
 package com.example.papricacookhousebot.objects;
 
+import com.example.papricacookhousebot.config.BotMessagesConfiguration;
 import com.example.papricacookhousebot.enums.Status;
 import com.example.papricacookhousebot.handlers.DefaultHandler;
 import com.example.papricacookhousebot.handlers.StatusHandler;

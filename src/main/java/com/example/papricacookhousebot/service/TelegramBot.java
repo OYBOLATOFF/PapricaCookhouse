@@ -53,4 +53,9 @@ public class TelegramBot extends TelegramLongPollingBot {
         SendMessage newMessage = new SendMessage(chatId+"", text);
         execute(newMessage);
     }
+
+    public boolean adminPasswordIsCorrect(Update update) {
+        String password = update.getMessage().getText();
+        return botConfig.getSecretPassword().equals(password);
+    }
 }
