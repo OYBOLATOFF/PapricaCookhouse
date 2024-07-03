@@ -1,8 +1,7 @@
 package com.example.papricacookhousebot;
 
 import com.example.papricacookhousebot.service.TelegramBot;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.context.event.EventListener;
@@ -12,9 +11,8 @@ import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 import org.telegram.telegrambots.updatesreceivers.DefaultBotSession;
 
 @Component
+@Slf4j
 public class BotInitializer {
-
-    private Logger logger = LoggerFactory.getLogger(BotInitializer.class);
 
     @Autowired
     private TelegramBot telegramBot;
@@ -24,9 +22,9 @@ public class BotInitializer {
         try {
             TelegramBotsApi telegramBotsApi = new TelegramBotsApi(DefaultBotSession.class);
             telegramBotsApi.registerBot(telegramBot);
-            logger.info("Телеграм бот '{}' успешно запущен. Api key: {}", telegramBot.getBotUsername(), telegramBot.getBotToken());
+            log.info("Телеграм бот '{}' успешно запущен. Api key: {}", telegramBot.getBotUsername(), telegramBot.getBotToken());
         } catch (TelegramApiException apiException) {
-            logger.error("Не удалось запустить телеграм-бота");
+            log.error("Не удалось запустить телеграм-бота. Сообщение: " + apiException.getMessage());
         }
     }
 

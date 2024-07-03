@@ -3,19 +3,18 @@ package com.example.papricacookhousebot.service;
 import com.example.papricacookhousebot.config.BotConfiguration;
 import com.example.papricacookhousebot.objects.StateMachine;
 import lombok.SneakyThrows;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Update;
+import org.telegram.telegrambots.meta.api.objects.replykeyboard.ReplyKeyboard;
 
 @Component
+@Slf4j
 public class TelegramBot extends TelegramLongPollingBot {
-
-    private Logger logger = LoggerFactory.getLogger(TelegramBot.class);
 
     @Autowired
     private BotConfiguration botConfig;
@@ -27,7 +26,7 @@ public class TelegramBot extends TelegramLongPollingBot {
 
     @Override
     public void onUpdateReceived(Update update) {
-        logger.info("Пришло новое сообщение от {}", update.getMessage().getFrom().getUserName());
+        log.info("Пришло новое сообщение от {}", update.getMessage().getFrom().getUserName());
         stateMachine.process(update);
     }
 
@@ -49,9 +48,19 @@ public class TelegramBot extends TelegramLongPollingBot {
 
     @SneakyThrows
     public void sendMessage(Update update, String text) {
-        Long chatId = update.getMessage().getChatId();
-        SendMessage newMessage = new SendMessage(chatId+"", text);
+        String chatId = update.getMessage().getChatId()+"";
+        SendMessage newMessage = new SendMessage(chatId, text);
         execute(newMessage);
+    }
+
+    @SneakyThrows
+    public void sendMessage(Update update, String text, ReplyKeyboard keyboard) {
+        String chatId = update.getMessage().getChatId()+"";
+        execute(SendMessage.builder()
+                .chatId(chatId)
+                .text(text)
+                .replyMarkup(keyboard)
+                .build());
     }
 
     public boolean adminPasswordIsCorrect(Update update) {
