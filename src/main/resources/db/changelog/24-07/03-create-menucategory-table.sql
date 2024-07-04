@@ -9,3 +9,8 @@ create table menu_category
         unique (id)
 );
 
+INSERT INTO paprica.menu_category (id, category_name) VALUES (1, 'Летний сезон');
+INSERT INTO paprica.menu_category (id, category_name) VALUES (2, 'Горячее');
+INSERT INTO paprica.menu_category (id, category_name) VALUES (3, 'Мангал');
+INSERT INTO paprica.menu_category (id, category_name) VALUES (4, 'Салаты');
+INSERT INTO paprica.menu_category (id, category_name) VALUES (5, 'Супы');

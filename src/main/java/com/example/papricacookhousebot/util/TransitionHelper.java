@@ -18,7 +18,7 @@ import java.util.Map;
 @Slf4j
 public class TransitionHelper {
 
-    private Map<Status, List<Status>> transitionRules = new HashMap<>();
+    private final Map<Status, List<Status>> transitionRules = new HashMap<>();
 
     @Autowired
     private StatusRepository statusRepository;
