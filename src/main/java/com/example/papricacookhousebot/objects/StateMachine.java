@@ -20,7 +20,7 @@ import java.util.Map;
 @Slf4j
 public class StateMachine {
 
-    private Map<Status, StatusHandler> handlers = new HashMap<>();
+    private final Map<Status, StatusHandler> handlers = new HashMap<>();
 
     @Autowired
     private StatusRepository statusRepository;
